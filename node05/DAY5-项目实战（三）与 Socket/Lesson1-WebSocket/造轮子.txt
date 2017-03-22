@@ -1,0 +1,46 @@
+﻿一、客户端
+    html 布局和js 功能实现
+二、服务端
+1、开启http服务
+   var http = require('http');
+   var url = require('url');
+   var app = require('express')();
+   http.createServer(function(request, response){
+       response.end();
+   }).listen(888);
+
+2、路由映射
+   var router = {'/index': function(){console.log('index')}};
+   url.parse(request.url).query
+   app.get('/index', function(){})
+
+3、开户socket服务
+   var ws = require('ws').Server();
+   var wss = new wsServer({port: 80});
+
+4、客户端socket
+
+客户连接服务端
+socket = new WebSocket('ws://localhost:88');
+
+服务端监听到客户端的连接
+wss.on('connection', function(ws){
+  ws.send('xx 上线');
+})
+
+客户端收到服务端推送的信息
+socket.on('message', function(data){
+   $('div').text(data);
+}) 
+
+摩拜单车系统：
+1、下载app *
+2、找到车 *
+3、扫码自动开锁
+   点击开锁按钮摄推送一个指令给 socket 服务器
+   socket 服务器将指令推送给自行车
+   自行车接收到开锁指令，调用锁控板的开锁模块（硬件实现）
+4、骑车完毕，锁车自动扣款
+   锁车时触发锁控板，锁控板向 socket 服务器发起锁车指令；
+   socket 接收到锁车指令，向 app 发起扣款指令；
+   app 收到扣款指令自动弹开付款界面。

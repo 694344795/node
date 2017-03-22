@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- plugin css -->
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap-main.css">
+	<link rel="stylesheet" type="text/css" href="libs/font-awesome/css/font-awesome.min.css">
+	<!-- auto css -->
+	<link rel="stylesheet" type="text/css" href="libs/styles/common.css">
+	<link rel="stylesheet" type="text/css" href="libs/styles/register.css">
+
+	<!-- plugin js -->
+	<script type="text/javascript" src="libs/angular/angular.min.js"></script>
+	<script type="text/javascript" src="libs/jquery/jquery-2.1.1.min.js"></script>
+	<!-- auto js -->
+	<script type="text/javascript" src="libs/js/common.js"></script>
+	<script type="text/javascript" src="libs/js/register.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+	<div class="ibox float-e-margins">
+        <div class="ibox-content">
+            <form class="form-horizontal m-t" id="signupForm" novalidate="novalidate">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">姓氏：</label>
+                    <div class="col-sm-8">
+                        <input id="firstname" ng-model="firstname" class="form-control" type="text">
+                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 这里写点提示的内容</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">名字：</label>
+                    <div class="col-sm-8">
+                        <input id="lastname" ng-model="lastname" class="form-control" type="text" aria-required="true" aria-invalid="false">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">用户名：</label>
+                    <div class="col-sm-8">
+                        <input id="username" ng-model="username" class="form-control" type="text" aria-required="true" aria-invalid="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">密码：</label>
+                    <div class="col-sm-8">
+                        <input id="password" ng-model="password" class="form-control" type="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">确认密码：</label>
+                    <div class="col-sm-8">
+                        <input id="confirm_password" ng-model="confirm_password" class="form-control" type="password">
+                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">E-mail：</label>
+                    <div class="col-sm-8">
+                        <input id="email" ng-model="email" class="form-control" type="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8 col-sm-offset-3">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" class="checkbox" id="agree" name="agree"> 我已经认真阅读并同意《H+使用协议》
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8 col-sm-offset-3">
+                    	<input type="button" class="btn btn-primary" name="" value="提交" ng-click="submit()">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>	
+</body>
+</html>

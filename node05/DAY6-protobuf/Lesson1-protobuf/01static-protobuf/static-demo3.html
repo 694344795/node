@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>   
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--　引入protobuf相关js文件　-->                                     
+	<script src="lib/Long.min.js"></script>
+	<script src="lib/ByteBufferAB.min.js"></script>
+	<script src="lib/oldProtoBuf.min.js"></script>
+</head>
+<body>
+	<!-- ProtoBuf处理 -->
+	<script type="text/javascript">
+			
+		if (typeof dcodeIO === 'undefined' || !dcodeIO.ProtoBuf) {
+		    throw(new Error("ProtoBuf.js is not present. Please see www/index.html for manual setup instructions."));
+		}
+		// 创建ProtoBuf
+		var ProtoBuf = dcodeIO.ProtoBuf;
+
+		// 先构造两个子模块
+		// 子模块－１
+		var ChildrenModule_1 = ProtoBuf.loadProtoFile("static-demo3.proto").build("ChildrenModule");
+		var childrenModule_1 = new ChildrenModule_1();
+		childrenModule_1.setNumber(1);
+		childrenModule_1.setName("Nginx5.0 初级案例");
+
+		// 子模块－２
+		var ChildrenModule_2 = ProtoBuf.loadProtoFile("static-demo3.proto").build("ChildrenModule");
+		var childrenModule_2 = new ChildrenModule_2();
+		childrenModule_2.setNumber(2);
+		childrenModule_2.setName("Nginx5.0 中级案例");
+
+		// 父模块
+		var ParentModule = ProtoBuf.loadProtoFile("static-demo3.proto").build("ParentModule");
+
+		// 像父模块设置值
+		var parentModule = new ParentModule();
+		parentModule.setNumber(1);
+		parentModule.setName("Nginx5.0");
+		parentModule.setChildrenModule(new Array(childrenModule_1,childrenModule_2));
+
+		// 打印父模块此时数据【火狐浏览器Ｆ12进行观察】
+		console.log("ProtoBuf对象数据：");
+		console.log(parentModule);
+
+		// 模拟发送
+		// 1.对象转字节：parentModule.toArrayBuffer() 
+		// 2.字节转对象：ParentModule.decode()
+		var msgDec = ParentModule.decode(parentModule.toArrayBuffer());
+		// 接收到的数据：
+		console.info("接收到的数据：");
+		console.info(parentModule.toArrayBuffer());
+		// 打印转换后的信息
+		console.info("经过ParentModule.decode转换后的数据：");
+		console.info(msgDec);
+
+	</script>	
+</body>
+</html>

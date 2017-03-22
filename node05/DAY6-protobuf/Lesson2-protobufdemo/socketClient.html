@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script type="text/javascript" src="Long.min.js"></script>
+	<script type="text/javascript" src="ByteBufferAB.min.js"></script>
+	<script type="text/javascript" src="ProtoBuf.min.js"></script>
+	<script type="text/javascript" src="socket.io.js"></script>
+	<script type="text/javascript" src="jquery.js"></script>
+	<style type="text/css" media="screen">
+		body{font-size: 12px; margin: 0; pa}
+		div{width: 50px; height: 50px; background-color: #ccc; transition: all 0.8s; position: absolute; left: 0px; top: 0px;}
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+
+	<script type="text/javascript">
+
+		var ProtoBuf = dcodeIO.ProtoBuf;
+		var Message = ProtoBuf.loadProtoFile("example.proto").build("Message");	
+		var socket = io.connect('ws://localhost:88');
+		socket.on('connect', function(){
+			console.log("服务已连接 ws://localhost:88");
+		});
+
+		socket.on('clientMove', function(msg){
+			var msgObj = Message.decode(msg);
+			console.log($(msgObj.id));
+			$(msgObj.id).css({left: msgObj.x, top: msgObj.y});
+		})
+
+		$(document).click(function(evt){
+			var myDate = new Date();
+			var now = myDate.getMonth() + '-' + myDate.getDate() + ' ' + myDate.getHours() + ':' + myDate.getMinutes() + ':' + myDate.getSeconds();
+			var msg = new Message();
+			msg.id = '#div1';
+			msg.x = evt.pageX;
+			msg.y = evt.pageY;
+			msg.time = now;
+			socket.emit('serverMessage', msg.toArrayBuffer());			
+		})	
+	</script>
+</body>
+</html>

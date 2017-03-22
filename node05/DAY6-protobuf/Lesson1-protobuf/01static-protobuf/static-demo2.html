@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>   
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="lib/ByteBufferAB.min.js"></script>
+	<script type="text/javascript" src="lib/protobuf.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		// protobuf.load('cover.helloworld.proto', function(error, root){
+		// 	console.log(error, root);
+		// })
+		// 
+		protobuf.load('static-demo2.proto').then(function(root){
+			var UserModel = root.lookup('protobuf.UserModel');
+			var _userModel = UserModel.create({cyUserno: '1111', cyPassWord: '2222',cyStatus: '3333', aa: '444'});
+			var buffer = UserModel.encode(_userModel).finish();
+			console.log(UserModel.decode(buffer));
+		})
+	</script>
+</body>
+</html>

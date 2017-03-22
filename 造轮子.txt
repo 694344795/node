@@ -1,0 +1,38 @@
+﻿造轮子
+
+一、用 express 开启服务器
+var express = require('express');
+var app = express();
+app.listen(888);
+
+二、用 express 建立了路由模块
+var express = require('express');
+var path = require('path');
+
+exports.router = function(app){
+ app.get('/aa', function(){});
+ app.post('/login', function(){});
+ app.use(express.static(path.join(path.resolve(__dirname, '../../') + '/client')));
+}
+
+三、用 mongodb 建立了数据层模块
+var mongod = require('mongodb');
+var server = new mongod.Server('localhost', 27017);
+var db = mongod.Db('test', server);
+
+mudule.exports = {
+ insert: function(){},
+ get: function(){},
+ update: function(){},
+ delete: function(){}
+}
+
+四、建立了一个 message 的数据模型 (MVC)
+
+module.exports = function(arg1, arg2){
+ this.obj = {
+   state: true,
+   message: '',
+   data:{}
+ }
+}

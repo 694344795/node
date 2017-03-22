@@ -1,0 +1,18 @@
+﻿一、客户端
+    html 布局和js 功能实现
+二、服务端
+1、开启http服务
+   var http = require('http');
+   var url = require('url');
+   var app = require('express')();
+   http.createServer(function(request, response){
+       response.end();
+   }).listen(888);
+
+2、路由映射
+   var router = {'/index': function(){console.log('index')}};
+   url.parse(request.url).query
+   app.get('/index', function(){})
+
+3、开户socket服务
+   

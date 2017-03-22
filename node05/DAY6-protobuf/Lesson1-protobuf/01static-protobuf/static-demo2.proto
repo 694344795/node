@@ -1,0 +1,7 @@
+package protobuf;
+ 
+message UserModel {
+  required string cyUserno = 1;
+  required string cyPassWord = 2;
+  required string cyStatus = 3;
+}

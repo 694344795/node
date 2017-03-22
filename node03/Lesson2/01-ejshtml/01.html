@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script type="text/javascript" src="../../../../../libs/ejs/ejs.min.js"></script>
+	<script type="text/javascript" src="../../../../../libs/jquery/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+	<div id="output"></div>
+	<ul>
+		<li>geddy</li>
+		<li>neil</li>
+		<li>alex</li>
+	</ul>
+<!-- 
+	var str = '<ul>
+		<%for(var i = 0; i < people.length; i++){%>
+			<li><%=people[i]%></li>
+		<%}%>
+	</ul>' -->
+
+	<script type="text/javascript">
+		var people = ['geddy', 'neil', 'alex'],
+		//ejs.render(str, data)
+		//str => html 元素和 js 的混合字符串
+		//data => js 部分要用到的数据
+		html = ejs.render('<h1><%= names.join(", "); %></h1>', {names: people});
+		// With jQuery:
+		$('#output').html(html);
+		// Vanilla JS:
+		// document.getElementById('output').innerHTML = html;	
+
+		// var str = '<p><%= users | first | capitalize %></p>';
+		// var _html = ejs.render(str, {
+		//     users: [
+		//       { name: 'tj' },
+		//       { name: 'mape' },
+		//       { name: 'guillermo' }
+		//     ]
+		// });
+		// document.getElementById('output').innerHTML = _html;	
+	</script>
+</body>
+</html>
